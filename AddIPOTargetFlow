@@ -271,7 +271,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <assignToReference>ClientEntityAssociates</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -322,7 +322,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <assignToReference>ClientEntityAssociates</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -373,7 +373,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <assignToReference>ClientEntityAssociates</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -417,7 +417,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <assignToReference>ClientEntityAssociates</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -461,7 +461,7 @@
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <assignToReference>ClientEntityAssociates</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -928,6 +928,13 @@
                 <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PEOtherAssociates</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Check_PE_Other_Roles</targetReference>
         </connector>
@@ -939,6 +946,13 @@
         <locationY>1708</locationY>
         <assignmentItems>
             <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Primary_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PEPrimaryAssociates</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_PE_Primary_CTM.Associate__c</elementReference>
@@ -3133,6 +3147,13 @@
         </value>
     </variables>
     <variables>
+        <name>ClientEntityAssociates</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
         <name>ClientEntityTeamMembers</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
@@ -3485,6 +3506,20 @@
         <name>IPOEntityCTMAssociateIdPEOther</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>PEPrimaryAssociates</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>PEOtherAssociates</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
