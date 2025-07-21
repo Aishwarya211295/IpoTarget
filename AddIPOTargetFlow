@@ -929,6 +929,80 @@
             <targetReference>Error_Screen</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Add_PE_Primary_Team_Member</name>
+        <label>Add PE Primary Team Member</label>
+        <locationX>248</locationX>
+        <locationY>1924</locationY>
+        <assignmentItems>
+            <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Primary_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMRolePEPrimary</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Primary_CTM.Role__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociatePEPrimary</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Primary_CTM.Associate__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIdPEPrimary</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Primary_CTM.Associate__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_on_PE_Primary_CTM</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_PE_Other_Team_Member</name>
+        <label>Add PE Other Team Member</label>
+        <locationX>248</locationX>
+        <locationY>2140</locationY>
+        <assignmentItems>
+            <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMRolePEOther</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Role__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociatePEOther</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIdPEOther</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_on_PE_Other_CTM</targetReference>
+        </connector>
+    </assignments>
     <choices>
         <name>ECMBanker</name>
         <choiceText>ECM Banker</choiceText>
@@ -1237,7 +1311,7 @@
         <locationX>248</locationX>
         <locationY>2032</locationY>
         <defaultConnector>
-            <targetReference>Loop_on_PE_Other_CTM</targetReference>
+            <targetReference>Add_PE_Other_Team_Member</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1251,7 +1325,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Loop_on_PE_Other_CTM</targetReference>
+                <targetReference>Add_PE_Other_Team_Member</targetReference>
             </connector>
             <label>PE Other ECM Banker</label>
         </rules>
@@ -1266,7 +1340,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Loop_on_PE_Other_CTM</targetReference>
+                <targetReference>Add_PE_Other_Team_Member</targetReference>
             </connector>
             <label>PE Other IB Banker</label>
         </rules>
@@ -1277,7 +1351,7 @@
         <locationX>248</locationX>
         <locationY>1816</locationY>
         <defaultConnector>
-            <targetReference>Loop_on_PE_Primary_CTM</targetReference>
+            <targetReference>Add_PE_Primary_Team_Member</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -1291,7 +1365,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Loop_on_PE_Primary_CTM</targetReference>
+                <targetReference>Add_PE_Primary_Team_Member</targetReference>
             </connector>
             <label>PE Primary ECM Banker</label>
         </rules>
@@ -1306,7 +1380,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Loop_on_PE_Primary_CTM</targetReference>
+                <targetReference>Add_PE_Primary_Team_Member</targetReference>
             </connector>
             <label>PE Primary IB Banker</label>
         </rules>
@@ -3325,6 +3399,48 @@
     </variables>
     <variables>
         <name>IPOEntityCTMRoleSB</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>IPOEntityCTMRolePEPrimary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>IPOEntityCTMAssociatePEPrimary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>IPOEntityCTMAssociateIdPEPrimary</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>IPOEntityCTMRolePEOther</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>IPOEntityCTMAssociatePEOther</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>IPOEntityCTMAssociateIdPEOther</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
