@@ -270,6 +270,13 @@
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Loop_on_CTM</targetReference>
         </connector>
@@ -309,6 +316,13 @@
         </assignmentItems>
         <assignmentItems>
             <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ClientEntityTeamMembers</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -358,6 +372,13 @@
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Loop_on_CTM</targetReference>
         </connector>
@@ -395,6 +416,13 @@
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
             </value>
         </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ClientEntityTeamMembers</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Loop_on_CTM</targetReference>
         </connector>
@@ -427,6 +455,13 @@
         </assignmentItems>
         <assignmentItems>
             <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ClientEntityTeamMembers</assignToReference>
             <operator>Add</operator>
             <value>
                 <elementReference>Loop_on_CTM.Associate__c</elementReference>
@@ -3096,6 +3131,13 @@
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>ClientEntityTeamMembers</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
     </variables>
     <variables>
         <name>createBofaIPORecordsNew</name>
