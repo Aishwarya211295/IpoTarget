@@ -1052,6 +1052,101 @@
             <targetReference>Loop_on_PE_Other_CTM</targetReference>
         </connector>
     </assignments>
+    <assignments>
+        <name>Assign_PE_Other_IBK_Joint_Relationship_Manager</name>
+        <label>Assign PE Other IBK Joint Relationship Manager</label>
+        <locationX>580</locationX>
+        <locationY>2882</locationY>
+        <assignmentItems>
+            <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>PEOtherAssociates</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMRoleIBSponsor</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FSGBanker</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIBSponsor</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIdIBSponsor</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIdIBSponsorEntity</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Entity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_on_PE_Other_CTM</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_PE_Other_IBK_Relationship_Manager</name>
+        <label>Assign PE Other IBK Relationship Manager</label>
+        <locationX>316</locationX>
+        <locationY>2882</locationY>
+        <assignmentItems>
+            <assignToReference>ProcessedAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMRoleIBKRMSponsor</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FSGBanker</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIBKRMSponsor</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>IPOEntityCTMAssociateIdIBKRMSponsor</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SponsorEntity</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_on_PE_Other_CTM.Entity__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_on_PE_Other_CTM</targetReference>
+        </connector>
+    </assignments>
     <choices>
         <name>ECMBanker</name>
         <choiceText>ECM Banker</choiceText>
@@ -1389,9 +1484,24 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Add_PE_Other_Team_Member</targetReference>
+                <targetReference>Assign_PE_Other_IBK_Relationship_Manager</targetReference>
             </connector>
             <label>PE Other IB Banker</label>
+        </rules>
+        <rules>
+            <name>PE_Other_IBK_Joint_Relationship_Manager</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_on_PE_Other_CTM.Role__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>JRM</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_PE_Other_IBK_Joint_Relationship_Manager</targetReference>
+            </connector>
+            <label>PE Other IBK Joint Relationship Manager</label>
         </rules>
     </decisions>
     <decisions>
@@ -3510,14 +3620,14 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>PEPrimaryAssociates</name>
+        <name>PEOtherAssociates</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>PEOtherAssociates</name>
+        <name>PEPrimaryAssociates</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
