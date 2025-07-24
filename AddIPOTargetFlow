@@ -669,7 +669,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>GetRelatedTeamMembers</targetReference>
+            <targetReference>Get_Existing_Associates</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -888,6 +888,19 @@
         </connector>
     </assignments>
     <assignments>
+        <name>Filter_Existing_Associates</name>
+        <label>Filter Existing Associates</label>
+        <locationX>446</locationX>
+        <locationY>4946</locationY>
+        <assignmentItems>
+            <assignToReference>FilteredTeamMembers</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <connector>
+            <targetReference>Filter_Unique_Associates</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
         <name>InActiveBofaTeamMember</name>
         <label>InActive BofaTeamMember</label>
         <locationX>204</locationX>
@@ -960,6 +973,22 @@
         </assignmentItems>
         <connector>
             <targetReference>Check_PE_Primary_Roles</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Store_Existing_Associate_Ids</name>
+        <label>Store Existing Associate Ids</label>
+        <locationX>446</locationX>
+        <locationY>4162</locationY>
+        <assignmentItems>
+            <assignToReference>ExistingAssociateIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>Loop_Store_Existing_Ids.Associate__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Store_Existing_Ids</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -1046,101 +1075,6 @@
             <operator>Assign</operator>
             <value>
                 <elementReference>Loop_on_PE_Other_CTM.Associate__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_on_PE_Other_CTM</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_PE_Other_IBK_Joint_Relationship_Manager</name>
-        <label>Assign PE Other IBK Joint Relationship Manager</label>
-        <locationX>580</locationX>
-        <locationY>2882</locationY>
-        <assignmentItems>
-            <assignToReference>ProcessedAssociateIds</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>PEOtherAssociates</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMRoleIBSponsor</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>FSGBanker</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMAssociateIBSponsor</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMAssociateIdIBSponsor</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMAssociateIdIBSponsorEntity</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Entity__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_on_PE_Other_CTM</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_PE_Other_IBK_Relationship_Manager</name>
-        <label>Assign PE Other IBK Relationship Manager</label>
-        <locationX>316</locationX>
-        <locationY>2882</locationY>
-        <assignmentItems>
-            <assignToReference>ProcessedAssociateIds</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__c</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMRoleIBKRMSponsor</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>FSGBanker</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMAssociateIBKRMSponsor</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>IPOEntityCTMAssociateIdIBKRMSponsor</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Associate__r.Id</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>SponsorEntity</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_on_PE_Other_CTM.Entity__c</elementReference>
             </value>
         </assignmentItems>
         <connector>
@@ -1324,6 +1258,34 @@
             <targetReference>Copy_1_of_Assignment_Initialize_invalidIPORecords</targetReference>
         </connector>
     </collectionProcessors>
+    <collectionProcessors>
+        <name>Filter_Unique_Associates</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Unique Associates</label>
+        <locationX>446</locationX>
+        <locationY>5054</locationY>
+        <assignNextValueToReference>currentItem_Filter_Unique_Associates</assignNextValueToReference>
+        <collectionProcessorType>FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>CreateTeammembersandSponsors</collectionReference>
+        <conditionLogic>1 AND 2</conditionLogic>
+        <conditions>
+            <leftValueReference>ExistingAssociateIds</leftValueReference>
+            <operator>NotContain</operator>
+            <rightValue>
+                <elementReference>currentItem_Filter_Unique_Associates.Associate__c</elementReference>
+            </rightValue>
+        </conditions>
+        <conditions>
+            <leftValueReference>currentItem_Filter_Unique_Associates.Associate__c</leftValueReference>
+            <operator>IsNull</operator>
+            <rightValue>
+                <booleanValue>false</booleanValue>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>GetRelatedTeamMembers</targetReference>
+        </connector>
+    </collectionProcessors>
     <decisions>
         <name>Check_Active_Team_Members</name>
         <label>Check Active Team Members</label>
@@ -1484,24 +1446,9 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Assign_PE_Other_IBK_Relationship_Manager</targetReference>
+                <targetReference>Add_PE_Other_Team_Member</targetReference>
             </connector>
             <label>PE Other IB Banker</label>
-        </rules>
-        <rules>
-            <name>PE_Other_IBK_Joint_Relationship_Manager</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_on_PE_Other_CTM.Role__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>JRM</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_PE_Other_IBK_Joint_Relationship_Manager</targetReference>
-            </connector>
-            <label>PE Other IBK Joint Relationship Manager</label>
         </rules>
     </decisions>
     <decisions>
@@ -1829,6 +1776,20 @@
             <targetReference>Loop_on_PE_Other_CTM</targetReference>
         </noMoreValuesConnector>
     </loops>
+    <loops>
+        <name>Loop_Store_Existing_Ids</name>
+        <label>Loop Store Existing Ids</label>
+        <locationX>446</locationX>
+        <locationY>4054</locationY>
+        <collectionReference>Get_Existing_Associates</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Store_Existing_Associate_Ids</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Filter_Existing_Associates</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -1856,7 +1817,7 @@
         <faultConnector>
             <targetReference>RollBackWhenError</targetReference>
         </faultConnector>
-        <inputReference>CreateTeammembersandSponsors</inputReference>
+        <inputReference>FilteredTeamMembers</inputReference>
     </recordCreates>
     <recordLookups>
         <name>Get_CTM_Records</name>
@@ -1877,6 +1838,36 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>CoverageTeamMember__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Existing_Associates</name>
+        <label>Get Existing Associates</label>
+        <locationX>446</locationX>
+        <locationY>3946</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Store_Existing_Ids</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>BofA Team</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>IPOTarget__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>getCurrentRecord.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>IPOTargetParty__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Associate__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -1963,6 +1954,8 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>IPOTargetParty__c</object>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Associate__c</queriedFields>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -3334,6 +3327,14 @@
         <objectType>IPOTargetParty__c</objectType>
     </variables>
     <variables>
+        <name>currentItem_Filter_Unique_Associates</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>IPOTargetParty__c</objectType>
+    </variables>
+    <variables>
         <name>currentItem_invalidIPORecords</name>
         <dataType>SObject</dataType>
         <isCollection>false</isCollection>
@@ -3357,6 +3358,21 @@
         <value>
             <booleanValue>false</booleanValue>
         </value>
+    </variables>
+    <variables>
+        <name>ExistingAssociateIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>FilteredTeamMembers</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>IPOTargetParty__c</objectType>
     </variables>
     <variables>
         <name>InActiveBofaTeamMemberName</name>
@@ -3620,14 +3636,14 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>PEOtherAssociates</name>
+        <name>PEPrimaryAssociates</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>PEPrimaryAssociates</name>
+        <name>PEOtherAssociates</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>false</isInput>
